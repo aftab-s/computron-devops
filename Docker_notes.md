@@ -38,7 +38,7 @@
 
 	  ```bash
 
-	  docker pull grafana/grafana-enterprise		#pull an image called **grafana-enterprise** from the repository called **grafana**
+	  docker pull grafana/grafana-enterprise		#pull an image called grafana-enterprise from the repository called grafana
 
 	  ```
 
@@ -52,7 +52,7 @@
 
 	 ```bash
 
-	 docker stop 9c		#Stops a docker container with ID that starts with  **9c**. Docker IDs are usually sequence of characters and integers. Either type the ID as a whole or the first two characters will also work.
+	 docker stop 9c		#Stops a docker container with ID that starts with  9c. Docker IDs are usually sequence of characters and integers. Either type the ID as a whole or the first two characters will also work.
 
 	```
 
