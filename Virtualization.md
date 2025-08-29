@@ -50,7 +50,7 @@
 
 ---
 
-## 4. Web Deployment (Manual)
+## Web Deployment (Manual)
 
 ### Steps to Deploy a Web App Manually:
 1. Get a **URL** (from EC2 or DNS).  
