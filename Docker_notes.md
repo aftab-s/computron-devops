@@ -36,11 +36,11 @@
 
 	-  **Example:**
 
-	  ```
+	```
 
-	  docker pull grafana/grafana-enterprise		#pull an image called grafana-enterprise from the repository called grafana
+      docker pull grafana/grafana-enterprise		  #pull an image called grafana-enterprise from the repository called grafana
 
-	  ```
+	```
 
  -  docker images : To list docker images
 
