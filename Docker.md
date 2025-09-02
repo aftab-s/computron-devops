@@ -41,7 +41,7 @@ where -d - detach flag
     --name - container name defining (image name setting)
     -p -port
 ### port mapping    
-    8085:host port (our port we can change according tonnour need)
+    8085:host port (our port we can change according to our need)
     80:container port( no changes possible,its defined)
 
 ### docker ps 
@@ -51,6 +51,6 @@ can show all running images
 our website coffee is visiting
 
 
-## docker exec -it 01ef /bin/sh
+### docker exec -it 01ef /bin/sh
 ### Windows to alphine linux entering 
 ### light weight os alphine entering so only some linux commands can be running through it
