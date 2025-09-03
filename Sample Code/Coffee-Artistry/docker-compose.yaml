@@ -16,6 +16,10 @@ services:
       - "8086:80"
 
   aftab-web:
+    depends_on:
+      - swalih-web
+      - kailas-web
+      - lezin-web
     image: aftab2010/coffee-artistry:v2
     ports:
       - "8087:80"
