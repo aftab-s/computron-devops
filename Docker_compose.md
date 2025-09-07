@@ -27,8 +27,9 @@
 
   ```
 ### Exit Command
+- **Example:**
     ```
-    exit       #Used to exit out of the Docker container shell.
+     exit       #Used to exit out of the Docker container shell.
 
     ```
 
