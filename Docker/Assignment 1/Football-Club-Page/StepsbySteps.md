@@ -18,6 +18,8 @@ EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 
+```
+
 ### 2. Build Docker Image
 docker build -t football-club-page .
 ### 3. Run container 
