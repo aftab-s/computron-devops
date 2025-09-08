@@ -32,7 +32,7 @@
 
 ##  Docker Commands
 
-- docker pull `<repo>/<image>` : To pull deocker images
+- docker pull *<repo>/<image>* : To pull deocker images
 
 	-  **Example:**
 
@@ -41,7 +41,7 @@
       docker pull grafana/grafana-enterprise		  #pull an image called grafana-enterprise from the repository called grafana
 
 	```
- - docker push `<repo>/<image>` : To push deocker images to docker hub
+ - docker push *<repo>/<image>* : To push deocker images to docker hub
 
 	-  **Example:**
 
