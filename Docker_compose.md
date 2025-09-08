@@ -135,7 +135,7 @@ CMD ["nginx", "-g", "daemon off;"]      #Starts the Nginx server.
 
 ---
 
-# Docker Compose File (Version 3.8)
+# Docker Compose File
 
 ## Code
 
