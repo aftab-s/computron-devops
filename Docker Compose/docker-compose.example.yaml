@@ -1,0 +1,76 @@
+# Example: Full-stack app (Node.js API + Postgres + Adminer)
+# This example shows common Compose features with simple, production-minded defaults.
+
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15.6
+    container_name: example_db
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: appdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:4
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      # Set default DB connection; can override in UI
+      ADMINER_DEFAULT_SERVER: db
+    networks:
+      - backend
+    restart: unless-stopped
+
+  api:
+    # In a real project you might use build: { context: ., dockerfile: Dockerfile }
+    image: node:18-alpine
+    working_dir: /usr/src/app
+    command: sh -c "node -v && node server.js"
+    volumes:
+      - ./app:/usr/src/app:ro
+    environment:
+      DATABASE_URL: postgres://appuser:supersecret@db:5432/appdb
+      NODE_ENV: development
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+    networks:
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+
+networks:
+  frontend:
+  backend: 
