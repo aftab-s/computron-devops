@@ -32,13 +32,22 @@
 
 ##  Docker Commands
 
-- docker pull <repo>/<image> : To pull deocker images
+- docker pull `<repo>/<image>` : To pull docker images
 
 	-  **Example:**
 
 	```
 
       docker pull grafana/grafana-enterprise		  #pull an image called grafana-enterprise from the repository called grafana
+
+	```
+ - docker push `<repo>/<image>` : To push docker images to docker hub
+
+	-  **Example:**
+
+	```
+
+      docker push kailasrpillai/course-website		  #pull an image called course-website from the repository called kailasrpillai
 
 	```
 
