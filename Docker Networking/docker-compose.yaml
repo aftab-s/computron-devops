@@ -1,0 +1,38 @@
+
+# Docker Networking Example (Beginner Friendly)
+
+version: '3.8'
+services:
+  # Example 1: Bridge Network (default and custom)
+  web:
+    image: nginx:alpine
+    container_name: web-server
+    ports:
+      - "8081:80"  # Access Nginx at http://localhost:8081
+    networks:
+      - mybridge
+
+  app:
+    image: busybox
+    container_name: app-client
+    command: ["sh", "-c", "ping web-server"]
+    networks:
+      - mybridge
+
+  # Example 2: Host Network (Linux only)
+  # Uncomment the following to try host networking (not supported on Docker Desktop for Windows/Mac)
+  # hostweb:
+  #   image: nginx:alpine
+  #   container_name: host-web-server
+  #   network_mode: host
+
+  # Example 3: None Network (no networking)
+  # Uncomment the following to try a container with no network access
+  # nonenet:
+  #   image: busybox
+  #   container_name: none-client
+  #   network_mode: none
+
+networks:
+  mybridge:
+    driver: bridge
