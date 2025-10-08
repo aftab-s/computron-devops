@@ -99,7 +99,3 @@ Advanced Jenkins features include integrating with Kubernetes for dynamic agents
 
 30. How do you troubleshoot a failed Jenkins build?  
     Check console output, logs in JENKINS_HOME, plugin versions, and agent connectivity to identify issues like dependency failures or permission errors.
-
-[7](https://goodspace.ai/interview-questions/jenkins)
-[8](https://www.linkedin.com/pulse/jenkins-interview-questions-jay-prakash-yadav-qjmrc)
-[9](https://www.igmguru.com/blog/jenkins-interview-questions)
