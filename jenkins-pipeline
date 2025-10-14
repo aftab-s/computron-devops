@@ -1,0 +1,103 @@
+
+
+pipeline {
+    agent any
+    
+    environment {
+        SLACK_CHANNEL = '#jenkins-alerts'
+        SLACK_CREDENTIAL = 'jenkinskeyyyy'
+    }
+    
+    stages {
+        // Stage 1: Git Checkout
+        stage('Checkout') {
+            steps {
+                echo 'Starting Git Checkout...'
+                git url: 'https://github.com/lezinhere/Food_Delivery_App.git', branch: 'main'
+                sh "ls -al"
+            }
+        }
+
+        // Stage 2: Build (Build the two separate Docker images explicitly)
+        stage('Build') {
+            steps {
+                echo 'Building backend and final application images using Docker target stages...'
+                
+                sh "docker build . -t food-delivery-app-backend:latest --target backend"
+               
+                sh "docker build . -t food-delivery-app-nginx:latest --target nginx"
+            }
+        }
+
+        // Stage 3: Test (Dummy test stage)
+        stage('Test') {
+            steps {
+                
+                echo 'TEST: Test stage completed as a dummy placeholder.'
+            }
+        }
+
+        // Stage 4: Deploy 
+        stage('Deploy') {
+            steps {
+                
+                sh "docker stop food-app-backend food-app-frontend food-app-db 2>/dev/null || true"
+                sh "docker rm food-app-backend food-app-frontend food-app-db 2>/dev/null || true"
+                sh "docker network rm food-app-network 2>/dev/null || true"
+
+                
+                sh "docker network create food-app-network"
+
+               
+                sh "docker run -d --name food-app-db --network food-app-network mongo:latest"
+
+               
+                sh """
+                    docker run -d \\
+                        --name food-app-backend \\
+                        -p 5000:5000 \\
+                        --network food-app-network \\
+                        --env-file .env.example \\
+                        food-delivery-app-backend:latest
+                """
+               
+                sh """
+                    docker run -d \\
+                        --name food-app-frontend \\
+                        -p 80:80 \\
+                        -p 443:443 \\
+                        --network food-app-network \\
+                        food-delivery-app-nginx:latest
+                """
+
+                echo "Deployment via pure Docker commands complete."
+            }
+        }
+    }
+
+    // Post actions (Slack notification logic)
+    post {
+        always {
+            echo 'Pipeline execution finished. Cleaning workspace.'
+            cleanWs()
+        }
+        success {
+            echo "Build completed - Code: 200. Sending success notification to Slack."
+            // Removed tokenCredentialId to rely on global config or prevent pipeline error.
+            slackSend(
+                channel: 'SLACK_CHANNEL',
+                color: 'good',
+                message: "✅ *SUCCESS* in Jenkins Job: ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check details: ${env.BUILD_URL}"
+            )
+        }
+        failure {
+            echo "Build failed - code:400. Sending failure notification to Slack."
+            // Removed tokenCredentialId to rely on global config or prevent pipeline error.
+            slackSend(
+                channel: 'SLACK_CHANNEL',
+                color: 'danger',
+                message: "❌ *FAILURE* in Jenkins Job: ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check for errors: ${env.BUILD_URL}"
+            )
+        }
+    }
+}
