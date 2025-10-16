@@ -1,0 +1,162 @@
+body { /* Ustawienie koloru tła i usunięcie marginesów */
+    background: url("../Main/background3.jpg") no-repeat; /* dodanie zdjęcia w tle */
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+}
+
+.naglowek, .menu_bar, footer { /* Ustawienia dla czerwonych pól*/
+    background-color: rgb(174, 64, 68);
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+}
+
+.naglowek { /* Ustawienia nagłówka */
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+.naglowek img { /* Ustawienia herbu w nagłówku */
+    margin: 20px;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.naglowek p { /* Ustawienia tekstu w nagłówku */
+    flex: 4.5;
+    display: flex;
+    margin: auto;
+    font-size: 30px;
+    margin-top: 35px;
+    color: rgb(219, 189, 40);
+    text-shadow: 5px 5px 5px black;
+    justify-content: center;
+}
+
+.menu_bar { /* Ustawienia paska MENU */
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center; /* Wypośrdowkowanie elementów w poziomie */
+}
+
+.menu_bar a { /* Ustawienia każdego elementu w MENU */
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    width: 140px;
+    justify-content: center;
+}
+ i {
+    font-size: 30px; /* Rozmiar ikony */
+    transform: translateY(5px);
+ }
+
+.menu_bar a:hover { /* Ustawienia elementów MENU po najechaniu kursorem */
+    background-color: rgb(117, 26, 29);
+    border-radius: 10px;   
+    color: rgb(219, 189, 40);
+    font-size: 80%;
+}
+
+
+
+/*Sukcesy*/
+
+
+p1 {/*Sukcesy w lewym gornym rogu*/
+    display: flex;
+    background-color: rgb(174, 64, 68);
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 74%;
+    border-radius: 10px;
+    color:#fff;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+p2 {/*"liczba poszczegolnych trofeow" oraz "Zdobyte trofea w poszczegolnych sezonach"*/
+    display: flex;
+    padding: 10px;
+    color:#fff;
+    margin-top: 10px;
+    font-size: 35px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+li{/* lista trofeow po lewej stronie*/
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 26px;
+    color:rgb(219, 189, 40);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p3{/*tekst do gradientu*/
+    color:rgb(219, 189, 40);
+    font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+.gradient { /*kod na gradient został zaczerpnięty z internetu (chatGPT);*/
+    background: linear-gradient(to right, #5fffca, #fe7bf1); /*  */
+    background-clip: text; /* gradientowanie tekstu a nie tla */
+    color: transparent; /* Set the text color to transparent */
+}
+
+dt {/*lista sezonow po prawej stronie*/
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 26px;
+    color:rgb(219, 189, 40);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+dd {/*poszczegolne trofea po prawej stronie*/
+    color:rgb(219, 189, 40);
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+/* uklad strony czyli podzielenie na dwa artykuly*/
+
+section{
+    display: flex;
+}
+section article {
+    background-color: rgb(174, 64, 68);
+    margin-top: 30px;
+   
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+}
+section article:nth-child(1) {
+    flex: 5;
+    margin-left: 10%;
+    margin-right: 10px;
+}
+section article:nth-child(2) {
+    flex: 5;
+    margin-right: 10%;
+}
+
+footer {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

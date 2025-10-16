@@ -1,0 +1,170 @@
+body { /* Ustawienie koloru tła i usunięcie marginesów */
+    background: url("../Main/background3.jpg") no-repeat; /* dodanie zdjęcia w tle */
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+}
+
+.naglowek, .menu_bar, footer { /* Ustawienia dla czerwonych pól*/
+    background-color: rgb(174, 64, 68);
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+}
+
+.naglowek { /* Ustawienia nagłówka */
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+.naglowek img { /* Ustawienia herbu w nagłówku */
+    margin: 20px;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.naglowek p { /* Ustawienia tekstu w nagłówku */
+    flex: 4.5;
+    display: flex;
+    margin: auto;
+    font-size: 30px;
+    margin-top: 35px;
+    color: rgb(219, 189, 40);
+    text-shadow: 5px 5px 5px black;
+    justify-content: center;
+}
+
+.menu_bar { /* Ustawienia paska MENU */
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center; /* Wypośrdowkowanie elementów w poziomie */
+}
+
+.menu_bar a { /* Ustawienia każdego elementu w MENU */
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    width: 140px;
+    justify-content: center;
+}
+ i {
+    font-size: 30px; /* Rozmiar ikony */
+    transform: translateY(5px);
+ }
+
+.menu_bar a:hover { /* Ustawienia elementów MENU po najechaniu kursorem */
+    background-color: rgb(117, 26, 29);
+    border-radius: 10px;   
+    color: rgb(219, 189, 40);
+    font-size: 80%;
+}
+
+footer {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+#kontener {
+    background-color: rgb(174, 64, 68);
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+}
+#produkty {
+    display: flex;    
+}
+
+#a, #b, #c {
+    flex:1;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+#produkt {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px black;
+    transition: 0.3s;
+}
+#produkt:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#opis {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 2px 2px 3px black;
+    background-color: white;
+    color: black;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 10px;
+}
+
+#koszyk {
+    background-color:  rgb(219, 189, 40);
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px black;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+#koszyk:hover {
+    transform: scale(1.1);
+}
+
+#ilosc_a, #ilosc_b, #ilosc_c {
+    background-color:  rgb(219, 189, 40);
+    height: 40px;
+    box-shadow: 2px 2px 3px black;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+option {
+    text-align: center;
+}
+
+#info {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(219, 189, 40);
+    font-weight: bold;
+}
+
+#p1, #p2, #p3 {
+    padding-left: 8px;
+    padding-left: 8px;
+}
+#p2 {
+    scale: 1.5;
+}

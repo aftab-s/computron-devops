@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FC Barcelona Log-in</title>
+    <meta charset="utf-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        * { /* ustawienia dla całej strony: czcionka i granice elementów */
+            box-sizing: border-box;
+            font-family: sans-serif; }
+        body { /* ustawienia dla body */
+            display: flex;
+            justify-content: center; /* centrowanie pionu */
+            align-items: center; /* centrowanie poziomu */
+            background: url(background1.jpg) no-repeat; /* dodanie zdjęcia w tle */
+            background-size: cover; /* zakrywanie całej strony */
+            margin-top: 10%;} /* odsuwanie zawartości od góry */
+        .kontener { /* ustawienia zawartości-kontenera */
+            width: 420px; /* szerokość */
+            color: rgb(255, 255, 255); /* kolor elementów */
+            border-radius: 10px; /* zaokrąglenie kontenera */
+            padding: 30px 40px; 
+            border: 2px solid white; /* biała ramka */
+            backdrop-filter: blur(4px); } /* blurowanie względem tłą */
+        .kontener h1 { /* napis: Logowanie */
+            font-size: 36px; 
+            text-align: center; }
+        .kontener .input { /* wpisywanie wartości hasła i loginu */
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0; }
+        .input input{ /* miejsce do wpisywania hasła i loginu */
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid white;
+            border-radius: 40px;
+            font-size: 16px;
+            color: white; 
+            padding: 20px 45px 20px 20px;}
+        .input input::placeholder { /* napis wewnątrz input */
+            color: rgb(255, 255, 255); }
+        .input i { /* ikonki */
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px; }
+        .kontener .zapamietaj { /* napis: pamiętaj mnie */
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin: -15px 0 15px; }
+        .zapamietaj label input { /* pole do odznaczania */
+            accent-color: white;
+            margin-right: 3px; }
+        .zapamietaj a { /* tekst: nie pamiętasz hasła? */
+            color: white;
+            text-decoration: none; }
+        .zapamietaj a:hover { /* najechanie na element: nie pamiętasz hasła? */
+            text-decoration: underline; }
+        .kontener .btn { /* ustawienia przycisku: zaloguj */
+            width: 100%;
+            height: 45px;
+            background: white;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            cursor: pointer; /* zmiana kursora po najechaniu myszom */
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            font-weight: 600; }
+        .kontener .rejestracja { /* ustawienia tekstu: nie masz konta? zarejestruj */
+            font-size: 15px;
+            text-align: center;
+            margin: 20px 0 15px; }
+        .rejestracja p a { /* ustawienia tekstu: zarejestruj */
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600; }
+        .rejestracja p a:hover { /* ustawienia tekstu: zarejestruj, po najechaniu myszą*/
+            text-decoration: underline;
+        }
+        .btn a { /* ustawienia napisu na przycisku */
+            text-decoration: none;
+            color: black;}
+        
+    </style> 
+</head>
+<body>
+    <div class="kontener">
+        <form action="">
+            <h1>Logowanie</h1>
+            <div class="input">
+                <input id="login" type="text" placeholder="Nazwa użytkownika" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input">
+                <input id="haslo" type="password" placeholder="Hasło" required>
+                <i class='bx bxs-lock'></i>
+            </div>
+            <script>
+                function uzupelnione_dane() {
+                    let login = document.getElementById("login").value;
+                    let haslo = document.getElementById("haslo").value;
+                    if (login==="" && haslo==="" ) {
+                        alert("Musisz podać NAZWĘ UŻYTKOWNIKA i HASŁO, aby się zalogować");
+                    } else if (login==="") {
+                        alert("Musisz podać NAZWĘ UŻYTKOWNIKA, aby się zalogować");
+                    } else if (haslo==="") {
+                        alert("Musisz podać HASŁO, aby się zalogować");
+                    } else {
+                        window.location.href = '../Main.html';
+                        return false;
+                    }
+                }
+            </script>
+
+            <div class="zapamietaj" >
+                <label><input type="checkbox">Pamiętaj mnie</label>
+                <a href="#">Nie pamiętasz Hasła?</a>
+            </div>
+
+            <button class="btn" onclick="return uzupelnione_dane()">
+                Zaloguj
+            </button>
+            
+            <div class="rejestracja">
+                <p>Nie masz konta?
+                    <a href="../Main.html">Zarejestruj </a>
+                </p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

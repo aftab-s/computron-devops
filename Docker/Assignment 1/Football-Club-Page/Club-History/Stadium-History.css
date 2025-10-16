@@ -1,0 +1,124 @@
+body { /* Ustawienie koloru tła i usunięcie marginesów */
+    background: url("../Main/background3.jpg") no-repeat; /* dodanie zdjęcia w tle */
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+}
+
+.naglowek, .menu_bar, footer { /* Ustawienia dla czerwonych pól*/
+    background-color: rgb(174, 64, 68);
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+}
+
+.naglowek { /* Ustawienia nagłówka */
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+.naglowek img { /* Ustawienia herbu w nagłówku */
+    margin: 20px;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.naglowek p { /* Ustawienia tekstu w nagłówku */
+    flex: 4.5;
+    display: flex;
+    margin: auto;
+    font-size: 30px;
+    margin-top: 35px;
+    color: rgb(219, 189, 40);
+    text-shadow: 5px 5px 5px black;
+    justify-content: center;
+}
+
+.menu_bar { /* Ustawienia paska MENU */
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center; /* Wypośrdowkowanie elementów w poziomie */
+}
+
+.menu_bar a { /* Ustawienia każdego elementu w MENU */
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    width: 140px;
+    justify-content: center;
+}
+ i {
+    font-size: 30px; /* Rozmiar ikony */
+    transform: translateY(5px);
+ }
+
+.menu_bar a:hover { /* Ustawienia elementów MENU po najechaniu kursorem */
+    background-color: rgb(117, 26, 29);
+    border-radius: 10px;   
+    color: rgb(219, 189, 40);
+    font-size: 80%;
+}
+
+footer {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+/* historia stadionu*/
+p1 {
+    display: flex;
+    background-color: rgb(174, 64, 68);
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 74%;
+    border-radius: 10px;
+    color:#fff;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+}
+
+section{
+    display: flex;
+}
+section article {
+    background-color: rgb(174, 64, 68);
+    margin-top: 0px;
+    flex: 7;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+
+    color: rgb(255, 255, 255);
+
+    box-shadow: 5px 7px 0px 0px #662020;
+}
+section article img {
+    width:45%;
+    display:flex;
+    height: 45%; /* Maintain the aspect ratio of the image */
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+    margin-left: 25%;
+}
+section article .first-letter { /* większa pierwsza litera tekstu*/
+    font-size: 400%; 
+    font-weight: bold; 
+    color: rgb(255, 255, 255); 
+    float: left; 
+    margin-right: 5px; 
+  }
