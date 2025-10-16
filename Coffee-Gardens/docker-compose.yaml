@@ -1,4 +1,4 @@
-version: "3.8"
+
 
 services:
   lezin-web:
@@ -19,6 +19,10 @@ services:
       - "8088:80"
 
   aftab-web:
+    depends_on:
+     - lezin-web
+     - kailas-web
+     - swalih-web
     image: aftab2010/coffee-artistry:v2
     ports: 
       - "8089:80"

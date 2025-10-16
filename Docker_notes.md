@@ -77,5 +77,25 @@
 
         -  -p 3000:3000 : Maps ports. Here 3000 before colon is the port number of grafana. 3000 after colon is the system port number to be mapped ( container port to host port)
 
+## Docker Layers
+
+- **Every instruction** in a `Dockerfile` creates a new **read-only layer**.
+
+## Common Layer-Creating Instructions
+
+- **`FROM`:** Creates the **base image layer(s)** (e.g., `FROM ubuntu:latest`). This is the foundation of your image.
+- **`RUN`:** Creates a new layer for **every command execution** (e.g., package installation like `apt-get install`, building code). Use a single `RUN` command with `&&` to combine steps and reduce layers. 
+- **`ADD` / `COPY`:** Creates a layer for **adding files or directories** from the host to the image. `COPY` is generally preferred for local files. 
+- **`WORKDIR`:** Creates a layer to **set the working directory** for subsequent instructions. 
+- **`ENV`:** Creates a layer to **set environment variables**. This layer is typically very small.
+
+---
+
+## Caching Mechanism
+
+- The lower layers (like COPY, EXPOSE, FROM, or base dependencies) remain unchanged. Docker reuses these existing layers from its cache.
+
+- Only the top, small APP layer is rebuilt. This results in a Fast Rebuild.
+
 
 
