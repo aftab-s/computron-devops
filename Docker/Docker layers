@@ -1,0 +1,9 @@
+Image Layers: Each layer is a snapshot of filesystem changes created by a single instruction (RUN, COPY, etc.) in the Dockerfile. These layers are immutable once built.
+
+Layer Caching: Docker reuses unchanged layers from the cache during builds, significantly speeding up the build process.
+
+Union File System (UFS): Merges all the image layers to present a single, coherent filesystem view to the container. It enables sharing of base layers across multiple images.
+
+Container Layer: When a container runs, a single thin, read-write layer is placed on top of the image layers.
+
+Any changes made inside the container use Copy-on-Write (CoW): the file is copied to the top read-write layer before modification, leaving the original image layers untouched. This ensures image integrity.

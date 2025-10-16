@@ -1,0 +1,51 @@
+# 📝 Class Notes Summary
+
+## 1. API (Application Programming Interface)
+* **Definition:** App Programming Interface.
+* **Communication:** Works on a Request and Response model.
+* **Data Format:** Often uses JSON.
+* **Frameworks:** Includes route definitions like app.route('/').
+* **REST Methods:** The four primary methods shown are: GET, PUT, UPDATE, and DELETE. (The UPDATE method appears in the diagram alongside standard REST methods).
+
+---
+
+## 2. Minikube and Container Architecture
+
+### Minikube and Container Architecture
+* **Platform:** Minikube runs inside a Virtual Box (Hypervisor).
+* **Components:** The environment includes the OS, K/E (Kubelet/Kube-Executor?), Docker Daemon (Container Runtime), and Containers.
+* **Image Sources:** Images are pulled from registries like DockerHub or ghcr.
+* **Interaction:** The docker run command uses an API.
+
+### Workflow for Docker/Minikube
+1. **Build/Push Image:** Applications are built into Docker images and often pushed to a registry like DockerHub or GitHub Container Registry (ghcr).
+2. **Deployment:** Kubernetes downloads the image and runs it as a Pod (the smallest deployable unit in Kubernetes) within the Minikube VM.
+3. **API Interaction:** The Docker run command interacts with the Docker API via a lower-level command like kubectl, which then communicates with the Kubernetes cluster.
+
+---
+
+## 3. Kubernetes Service Networking and Access
+
+### A. Internal Cluster Access
+* **Pods ($P_1, P_2, P_3$):** Each Pod has its own IP address (e.g., $IP_1$, $IP_2$, $IP_3$) and runs an application listening on an internal port (e.g., $80$).
+* **Service (SVC):** A stable endpoint with a Cluster IP.
+    * It acts as a Load Balancer (LB), distributing traffic among the target Pods ($P_1, P_2, P_3$) via their Pod IPs and Ports (e.g., $80$).
+    * Internal traffic can reach the Pods via the Cluster IP:Port.
+* **Internal Access Example (localhost):**
+    * A Pod can access another Pod via the Service's Cluster IP.
+    * A process running on the same machine but outside the cluster might access the Pods via localhost:Port or 127.0.0.1:Port through proxy/port-forwarding.
+
+### B. External Cluster Access
+External access is typically handled by two Service types: NodePort and LoadBalancer (LB svc).
+
+#### 1. NodePort Service
+* **Mechanism:** Exposes the Service on a static port (the Node Port, e.g., $30000-32767$) on each Node in the cluster.
+* **Access:** External traffic can access the service via $Node\_IP:Node\_Port$.
+* **Flow:** $Outside \rightarrow Node\_IP:Node\_Port \rightarrow SVC \rightarrow Pod$
+
+#### 2. LoadBalancer Service (LB svc)
+* **Mechanism:** This is typically used in cloud environments. It provisions an external cloud Load Balancer and assigns a Public IP to the Service.
+* **External Access via Router:**
+    * An external user connects to the Public IP of the Router/LB, often through a specific Port mapping (e.g., $80:80$ or a forwarded port like $3000:80$).
+    * **NAT (Network Address Translation):** The router/LB uses NAT to map the external Public IP/Port to the internal Cluster IP/Port.
+* **Flow:** $Internet \rightarrow Router/LB (Public\_IP) \rightarrow SVC \rightarrow Pod$

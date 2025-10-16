@@ -1,0 +1,42 @@
+# Terraform 
+
+Terraform is an open-source tool developed by **HashiCorp**. It's used for **Infrastructure as Code (IaC)**, to manage cloud resources through code. It automates the process of creating, modifying, and destroying infrastructure.
+
+---
+
+## Key Context
+The modern infrastructure approach is **short-lived and immutable**—we **recreate** servers instead of modifying them. Terraform automates this lifecycle, defining resources in code. It represents the **IaC provisioning method**
+Terraform is specifically an **Infrastructure Provisioning Tool**
+
+---
+
+## Architecture and Commands
+
+### Architecture
+1.  **Providers:** These are plugins (e.g., AWS, Azure) that interact with cloud platforms and expose resource types (e.g., `aws_instance`).
+2.  **Backend Configuration:** This is where Terraform stores the **state files**, which track the deployed infrastructure to ensure consistency and enable team collaboration (often stored remotely, like in S3).
+
+### Core Commands (Lifecycle)
+* **`terraform init`**: **First step.** Initializes the working directory and downloads necessary **Provider** plugins (and sets up the backend configuration).
+* **`terraform plan`**: Shows the execution plan—**what changes** will be made. It's a "dry run." A `+` means a resource **will be created**, and a `-` means it **will be destroyed**.
+* **`terraform apply`**: Executes the plan to **create or modify** the infrastructure to match the desired state defined in your code.
+* **`terraform destroy`**: Destroys all infrastructure resources managed by the configuration.
+
+---
+
+## Resource Block Structure (The Code)
+
+A **resource block** is an object that Terraform manages. It starts with the mandatory keyword **`resource`**.
+
+The format is: `resource "<RESOURCE_TYPE>" "<RESOURCE_LOCAL_NAME>" { ... arguments }`
+
+* **`<RESOURCE_TYPE>`:** means the type of infrastructure to create (e.g., `local_file`). This is provided by the active Provider.
+* **`<RESOURCE_LOCAL_NAME>`:** A unique name (e.g., `"test_file"`) used only for referencing the resource within the Terraform code.
+* **Arguments:** These are provider-specific settings (e.g., `filename = "test.txt"`, `content = "Azure is great"`) needed to configure the resource.
+
+**Example:** :
+```hcl
+resource "local_file" "test_file" {
+  filename = "test.txt"
+  content  = "Azure is great"
+}
