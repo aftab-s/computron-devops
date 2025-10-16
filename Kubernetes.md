@@ -29,6 +29,9 @@ Kubernetes operates on a distinction between its control plane and its work unit
 
 # Kubernetes Essential Commands
 
+- **Controller Manager** : **Watches the cluster** and handles actions such as maintaining the correct number of nodes and application replicas. 
+- **Scheduler** :  Responsible for scheduling pods from a "spaced state" (pending) to available or empty nodes based on resource needs and history. 
+
 This table outlines the core components of the Kubernetes control plane and common `kubectl` commands.
 
 | Component/Command | Description |
@@ -37,8 +40,6 @@ This table outlines the core components of the Kubernetes control plane and comm
 | **`kubelet`** | A primary agent that runs on **each worker node**. It manages the pods and containers based on the user's request. |
 | **`kube-api-server`** | The **API server** for the control plane. All instructions from `kubectl` are channeled through the `kube-api-server`. |
 | **`etcd`** | A **distributed database** that stores the cluster's moment-to-moment flow and optimal configuration state. |
-| **Controller Manager** | **Watches the cluster** and handles actions such as maintaining the correct number of nodes and application replicas. |
-| **Scheduler** | Responsible for scheduling pods from a "spaced state" (pending) to available or empty nodes based on resource needs and history. |
 | **`kubectl get all`** | Lists **all** Kubernetes resources (Deployments, Services, Pods, etc.). |
 | **`kubectl get pods`** | Lists all **pods** (which are the smallest deployable units, typically running containers). |
 | **`kubectl create deployment [name] --image=[image] --replicas=[#]`** | Creates a deployment, specifying the image tag and the desired number of replicas (e.g., `--replicas=2`). |
