@@ -1,4 +1,4 @@
-# Kubernetes (K8s) Core Concepts ☸️
+# Kubernetes (K8s) Core Concepts 
 
 This section outlines the fundamental concepts and architecture of Kubernetes.
 
