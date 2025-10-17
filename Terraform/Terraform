@@ -10,11 +10,6 @@ Terraform is specifically an **Infrastructure Provisioning Tool**
 
 ---
 
-## Architecture and Commands
-
-### Architecture
-1.  **Providers:** These are plugins (e.g., AWS, Azure) that interact with cloud platforms and expose resource types (e.g., `aws_instance`).
-2.  **Backend Configuration:** This is where Terraform stores the **state files**, which track the deployed infrastructure to ensure consistency and enable team collaboration (often stored remotely, like in S3).
 
 ### Core Commands (Lifecycle)
 * **`terraform init`**: **First step.** Initializes the working directory and downloads necessary **Provider** plugins (and sets up the backend configuration).
