@@ -35,11 +35,9 @@ Infrastructure can be provisioned in three main ways:
 
 ## Core Terraform Commands
 
-| Command | Description |
-|----------|-------------|
-| `terraform init` | Initializes the working directory and downloads provider plugins. |
-| `terraform plan` | Shows what changes will be made to reach the desired state. |
-| `terraform apply` | Applies the plan to create to modify resources. Generates **`terraform.tfstate`**(a record of what resources Terraform has created, modified, or destroyed) which should not be shared. |
+- `terraform init` : Initializes the working directory and downloads provider plugins. 
+- `terraform plan` : Shows what changes will be made to reach the desired state. 
+- `terraform apply` : Applies the plan to create to modify resources. Generates **`terraform.tfstate`**(a record of what resources Terraform has created, modified, or destroyed) which should not be shared. 
 
 ---
 
