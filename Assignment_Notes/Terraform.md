@@ -15,11 +15,9 @@
 ## Provisioning Methods
 Infrastructure can be provisioned in three main ways:
 
-| Type | Description |
-|------|--------------|
-| **GUI (Graphical User Interface)** | Manual setup via dashboards (e.g., AWS Console). |
-| **API/CLI** | Command-line or API-based provisioning. |
-| **IaC (Infrastructure as Code)** | Automated, code-based provisioning. Terraform is the key tool here. |
+- **GUI (Graphical User Interface)** : Manual setup via dashboards (e.g., AWS Console). 
+- **API/CLI** : Command-line or API-based provisioning. 
+- **IaC (Infrastructure as Code)** : Automated, code-based provisioning. Terraform is the key tool here. 
 
 ---
 
@@ -43,10 +41,8 @@ Infrastructure can be provisioned in three main ways:
 
 ## Terraform Plan Output Symbols
 
-| Symbol | Meaning |
-|---------|----------|
-| `+` | Resource **will be created** |
-| `-` | Resource **will be destroyed** |
+- `+` : Resource **will be created** 
+- `-` : Resource **will be destroyed** 
 
 ---
 
