@@ -33,12 +33,13 @@ Kubernetes operates using two main layers(node):
 
 
 **kubectl** -  Command-line tool used to control the cluster (apply changes, check status)
+
 **kubelet** - Agent running on each worker node — manages pods and containers based on instructions
 
 **kube-api-server** -it is the main API server that acts as the communication hub between components and commad line(kubectl)
 
 ##  Kubernetes Commands
-
+'''
 kubectl get all - Lists all Kubernetes resources 
 kubectl get pods - Lists all pods 
 kubectl create deployment [name] --image=[image] --replicas=[#] - Creates a deployment, specifying the image tag and the desired number of replicas 
