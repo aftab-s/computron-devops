@@ -39,9 +39,13 @@ Kubernetes operates using two main layers(node):
 **kube-api-server** -it is the main API server that acts as the communication hub between components and commad line(kubectl)
 
 ##  Kubernetes Commands
-'''
+
 kubectl get all - Lists all Kubernetes resources 
+
 kubectl get pods - Lists all pods 
+
 kubectl create deployment [name] --image=[image] --replicas=[#] - Creates a deployment, specifying the image tag and the desired number of replicas 
+
 kubectl apply -f [deployment.yaml] - Used to run a YAML file that contains all deployment and resource configuration details.
+
 kubectl delete pod [pod name]	Deletes a specific pod. 
