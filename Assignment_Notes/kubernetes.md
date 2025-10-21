@@ -24,11 +24,12 @@
 # Kubernetes Essential Commands
 
 - **Controller Manager** : **Watches the cluster** and handles actions such as maintaining the correct number of nodes and application replicas. It monitors the whole process. Control manager also looks for healthy as well as empty nodes.
-- **Scheduler** :  Responsible for scheduling pods from a "spaced state" (pending) to available or empty nodes based on resource needs and history. 
+- **Scheduler** :  Responsible for scheduling pods from a pending state to available or empty nodes based on resource needs. 
 - **etcd** : A **distributed database** that stores the cluster's moment-to-moment flow and configuration state. 
 - **kubectl** : The command-line tool used to **control the worker nodes** (i.e., apply changes, view status). |
-- **kubelet** : A primary agent that runs on **each worker node**. It creates the pods based on the user's request. 
-- **kube-api-server** : The **API server** for the control plane. All instructions from `kubectl` are channeled through the **kube-api-server**. User interacts through **kube-api-server**.
+- **kubelet** : It creates the pods based on the user's request.
+- **kubeproxy** : Used to output the result.
+- **kube-api-server** : The **API server** for the control plane. User interacts through **kube-api-server**.
 - **`kubectl get all`** : Lists **all** Kubernetes resources (Deployments, Services, Pods, etc.). 
 - **`kubectl get pods`** : Lists all **pods** (which are the smallest deployable units, typically running containers). 
 - **`kubectl create deployment [name] --image=[image] --replicas=[number]`** : Creates a deployment, specifying the image tag and the desired number of replicas.
