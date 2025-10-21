@@ -1,9 +1,18 @@
-Image Layers: Each layer is a snapshot of filesystem changes created by a single instruction (RUN, COPY, etc.) in the Dockerfile. These layers are immutable once built.
+# Docker Layers
 
-Layer Caching: Docker reuses unchanged layers from the cache during builds, significantly speeding up the build process.
+- **FROM:** Creates the base image layer(s) (e.g., `FROM ubuntu:latest`). This is the foundation of your image.
 
-Union File System (UFS): Merges all the image layers to present a single, coherent filesystem view to the container. It enables sharing of base layers across multiple images.
+- **WORKDIR:** Creates a layer to set the working directory for subsequent instructions.
 
-Container Layer: When a container runs, a single thin, read-write layer is placed on top of the image layers.
+- **APP:** Refers to the topmost layer of a container image that contains your application code and its dependencies.
 
-Any changes made inside the container use Copy-on-Write (CoW): the file is copied to the top read-write layer before modification, leaving the original image layers untouched. This ensures image integrity.
+- **RUN:** Creates a new layer for every command execution (e.g., package installation like `apt-get install`, building code).  
+  
+
+- **ADD / COPY:** Creates a layer for adding files or directories from the host to the image.  
+ 
+
+- **EXPOSE:** Declares which port the container will listen on at runtime.
+
+---
+
