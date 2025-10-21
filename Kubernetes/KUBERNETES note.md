@@ -1,7 +1,5 @@
 # Kubernetes 
 
----
-
 ## Kubernetes Architecture 
 
 Kubernetes operates using two main layers(node):
