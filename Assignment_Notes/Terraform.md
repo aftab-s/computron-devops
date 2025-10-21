@@ -15,11 +15,9 @@
 ## Provisioning Methods
 Infrastructure can be provisioned in three main ways:
 
-| Type | Description |
-|------|--------------|
-| **GUI (Graphical User Interface)** | Manual setup via dashboards (e.g., AWS Console). |
-| **API/CLI** | Command-line or API-based provisioning. |
-| **IaC (Infrastructure as Code)** | Automated, code-based provisioning. Terraform is the key tool here. |
+- **GUI (Graphical User Interface)** : Manual setup via dashboards (e.g., AWS Console). 
+- **API/CLI** : Command-line or API-based provisioning. 
+- **IaC (Infrastructure as Code)** : Automated, code-based provisioning. Terraform is the key tool here. 
 
 ---
 
@@ -35,20 +33,16 @@ Infrastructure can be provisioned in three main ways:
 
 ## Core Terraform Commands
 
-| Command | Description |
-|----------|-------------|
-| `terraform init` | Initializes the working directory and downloads provider plugins. |
-| `terraform plan` | Shows what changes will be made to reach the desired state. |
-| `terraform apply` | Applies the plan to create to modify resources. Generates **`terraform.tfstate`**(a record of what resources Terraform has created, modified, or destroyed) which should not be shared. |
+- `terraform init` : Initializes the working directory and downloads provider plugins. 
+- `terraform plan` : Shows what changes will be made to reach the desired state. 
+- `terraform apply` : Applies the plan to create to modify resources. Generates **`terraform.tfstate`**(a record of what resources Terraform has created, modified, or destroyed) which should not be shared. 
 
 ---
 
 ## Terraform Plan Output Symbols
 
-| Symbol | Meaning |
-|---------|----------|
-| `+` | Resource **will be created** |
-| `-` | Resource **will be destroyed** |
+- `+` : Resource **will be created** 
+- `-` : Resource **will be destroyed** 
 
 ---
 

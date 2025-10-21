@@ -1,9 +1,9 @@
 # Kubernetes (K8s) Core Concepts 
 
-## Origin and Basics
-* **Origin:** Developed to manage systems where changes are applied to a central node, and all other nodes follow **"all at once."**
-* **Language:** Kubernetes is primarily developed in the **Go (GO)** programming language.
-* **Orchestration Analogy:** It is compared to an **orchestra**, where the **conductor** is the central figure (Master Node), and all other musicians (Worker Nodes) are in sync. Kubernetes uses a technology called **Service Mesh** for container network.**lstio** and **consul** are examples.
+## Basics
+* Developed to manage systems where changes are applied to a central node, and all other nodes follow **"all at once."**
+* Kubernetes is primarily developed in the **Go (GO)** programming language.
+* It is compared to an **orchestra**, where the **conductor** is the central figure (Master Node), and all other musicians (Worker Nodes) are in sync. Kubernetes uses a technology called **Service Mesh** for container network.**lstio** and **consul** are examples.
 
 ---
 
@@ -11,9 +11,9 @@
 
 ### 1. Master Node (Control Plane)
 * The **central control plane** of the cluster.
-* **Role:** Issues commands and controls the worker nodes.
-* **Workloads:** Applications **do not run** on the master node.
-* **Requirement:** A minimum of **one** master node is needed.
+* Issues commands and controls the worker nodes.
+* Applications **do not run** on the master node.
+
 
 ### 2. Worker Node
 * The nodes where the actual **applications and workloads** run.
