@@ -112,7 +112,7 @@ CMD ["nginx", "-g", "daemon off;"]      #Starts the Nginx server.
 
 ## Monolithic Architecture
 - All services (Frontend, Backend, Database, AI, etc.) run in a **single container**.  
-- **Example:** Netflix (earlier), Flipkart, Uber (older versions).  
+- **Example:** Netflix, Flipkart.  
 
 ### Disadvantage
 - If one component fails (e.g., frontend), the whole application may crash.  
