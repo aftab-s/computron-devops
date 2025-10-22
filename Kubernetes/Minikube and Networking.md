@@ -10,7 +10,7 @@
 
 ### Minikube and Container Architecture
 * Minikube runs inside a Virtual Box (Hypervisor).
-* The environment includes the OS, K/E (Kubelet/Kube-Executor), Docker Daemon (Container Runtime), and Containers.
+* The environment includes the OS, Kubelet, Docker Daemon (Container Runtime), and Containers.
 * Images are pulled from registries like DockerHub
 * The docker run command uses an API.
 
