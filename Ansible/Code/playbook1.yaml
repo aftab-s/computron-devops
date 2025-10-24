@@ -1,0 +1,51 @@
+---
+- name: Deploy Hello World Webpage using Apache
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    html_file: /var/www/html/index.html
+    apache_pkg: "{{ 'apache2' if ansible_facts['pkg_mgr'] == 'apt' else 'httpd' }}"
+    apache_service: "{{ 'apache2' if ansible_facts['pkg_mgr'] == 'apt' else 'httpd' }}"
+    apache_conf: "{{ '/etc/apache2/ports.conf' if ansible_facts['pkg_mgr'] == 'apt' else '/etc/httpd/conf/httpd.conf' }}"
+
+  tasks:
+    - name: Install Apache package
+      package:
+        name: "{{ apache_pkg }}"
+        state: present
+      notify: Restart Apache
+
+    - name: Create index.html with Hello World
+      copy:
+        content: "Hello World"
+        dest: "{{ html_file }}"
+      notify: Restart Apache
+
+    - name: Ensure port 80 is enabled in Apache config
+      lineinfile:
+        path: "{{ apache_conf }}"
+        regexp: "^Listen"
+        line: "Listen 80"
+        state: present
+      notify: Restart Apache
+
+    - name: Ensure Apache service is running and enabled
+      service:
+        name: "{{ apache_service }}"
+        state: started
+        enabled: yes
+
+    - name: Debug output with curl test
+      command: curl -s http://localhost:80
+      register: web_output
+
+    - debug:
+        msg: "Server Response: {{ web_output.stdout }}"
+
+  handlers:
+    - name: Restart Apache
+      service:
+        name: "{{ apache_service }}"
+        state: restarted
