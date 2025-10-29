@@ -89,3 +89,89 @@ resource "<RESOURCE_TYPE>" "<IDENTIFIER>" {
 - A unique, local name used to refer to this resource within the Terraform configuration.
 
 
+# Terraform Variables
+
+- In Terraform, **.tfvars file** are used to assign values to input variables defined in your Terraform configuration (.tf files).
+- Terraform initializes and can read all `.tfvars` files.  
+- There is no strict **naming convention**, but keeping them organized is best practice.
+- Combine all variables into a single `variables.tf` file, and bundle resources neatly in one place to maintain clarity.
+
+### Order of Priority (Highest to Lowest)
+
+- Command Line  >  .tfvars File  >  Default Value (variables.tf)
+- If we create a file named `terraform.tfvars` and define:
+
+```hcl
+file_name = "hello.txt"
+```
+
+- Then the variable `file_name` will take the value `"hello.txt"`.  
+- Terraform `.tfvars` files can override values defined in `variables.tf`.
+- **Command line** has the highest priority.
+- Example:
+
+```bash
+terraform apply -var file_name="cloud.txt"
+```
+
+- Here, the value provided in the command line (`cloud.txt`) overrides values set in both `.tfvars` and `variables.tf`.
+- If there are multiple `.tfvars` files, we can specify which one to use explicitly:
+
+```bash
+terraform apply -var-file="dev.tfvars"
+```
+
+- Here, `"dev.tfvars"` is the name of the `.tfvars` file we want Terraform to use.
+
+---
+
+## Variable Definition Example
+
+**In `variables.tf`:**
+
+```hcl
+variable "file_name" {
+  default = "cloud.txt"
+}
+```
+
+**In `terraform.tfvars`:**
+
+```hcl
+file_name = "hello.txt"
+```
+
+- When both are present, the `.tfvars` value (`"hello.txt"`) overrides the default value in `variables.tf`.  
+- However, if a command-line argument is passed, it takes the highest priority.
+
+---
+
+## Resource Example
+
+**In `main.tf`:**
+
+```hcl
+resource "local_file" "cloud" {
+  filename = var.file_name
+  content  = "AWS is great"
+}
+```
+
+Here, **var.file_name** refers to the variable defined in **variables.tf**.
+
+So if `variables.tf` defines `file_name = "cloud.txt"`, and if there is a `terraform.tfvars` for instance which defines `file_name = "hello.txt"`, then the **file_name** value from **terrafrom.tfvars** will replace the `file_name` in **variables.tf**. 
+
+---
+
+## Variable Example
+
+**In `variables.tf`:**
+
+```hcl
+variable "file_name" {
+  default     = "cloud.txt"
+  type        = string
+  description = " Value for the file name"
+}
+```
+
