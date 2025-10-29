@@ -89,7 +89,7 @@ resource "<RESOURCE_TYPE>" "<IDENTIFIER>" {
 - A unique, local name used to refer to this resource within the Terraform configuration.
 
 
-# Terraform Variables
+## Terraform Variables
 
 - In Terraform, **.tfvars file** are used to assign values to input variables defined in your Terraform configuration (.tf files).
 - Terraform initializes and can read all `.tfvars` files.  
@@ -125,7 +125,7 @@ terraform apply -var-file="dev.tfvars"
 
 ---
 
-## Variable Definition Example
+### Variable Definition Example
 
 **In `variables.tf`:**
 
@@ -146,7 +146,7 @@ file_name = "hello.txt"
 
 ---
 
-## Resource Example
+### Resource Example
 
 **In `main.tf`:**
 
@@ -163,7 +163,7 @@ So if `variables.tf` defines `file_name = "cloud.txt"`, and if there is a `terra
 
 ---
 
-## Variable Example
+### Variable Example
 
 **In `variables.tf`:**
 
