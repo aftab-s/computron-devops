@@ -157,9 +157,9 @@ resource "local_file" "cloud" {
 }
 ```
 
-Here, **var.file_name** refers to the variable defined in **variables.tf**.
+Here, `var.file_name` refers to the variable defined in `variables.tf`.
 
-So if `variables.tf` defines `file_name = "cloud.txt"`, and if there is a `terraform.tfvars` for instance which defines `file_name = "hello.txt"`, then the **file_name** value from **terrafrom.tfvars** will replace the `file_name` in **variables.tf**. 
+So if `variables.tf` defines `file_name = "cloud.txt"`, and if there is a `terraform.tfvars` for instance which defines `file_name = "hello.txt"`, then the `file_name` value from `terrafrom.tfvars` will replace the `file_name` in `variables.tf`. 
 
 ---
 
