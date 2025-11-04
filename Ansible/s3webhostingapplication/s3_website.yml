@@ -1,0 +1,52 @@
+---
+- name: Provision S3 static website and upload index.html
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  vars:
+    aws_region: "us-east-1"
+    index_src: "{{ playbook_dir }}/index.html"
+    bucket_name: "test-bucket-for-ansible-spa-hosting-003"
+
+  tasks:
+    - name: Create S3 bucket
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        region: "{{ aws_region }}"
+        state: present
+      register: bucket_create
+
+    - name: Disable S3 bucket public access block
+      ansible.builtin.command:
+        cmd: aws s3api put-public-access-block --bucket {{ bucket_name }} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+      register: public_access_result
+      ignore_errors: true
+
+    - name: Try to set public read bucket policy (may fail if account blocks public policies)
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        policy: "{{ {'Version': '2012-10-17', 'Statement': [ {'Sid': 'PublicReadGetObject', 'Effect': 'Allow', 'Principal': '*', 'Action': ['s3:GetObject'], 'Resource': ['arn:aws:s3:::%s/*' % bucket_name] } ] } | to_json }}"
+      register: policy_result
+      ignore_errors: true
+
+    - name: Configure bucket for website hosting
+      community.aws.s3_website:
+        name: "{{ bucket_name }}"
+        state: present
+        suffix: index.html
+        error_key: index.html
+
+    - name: Upload index.html to bucket
+      amazon.aws.s3_object:
+        bucket: "{{ bucket_name }}"
+        object: index.html
+        src: "{{ index_src }}"
+        mode: put
+
+    - name: Compute website endpoint URL
+      ansible.builtin.set_fact:
+        website_url: "http://{{ bucket_name }}.s3-website-{{ aws_region }}.amazonaws.com"
+
+    - name: Print website URL
+      ansible.builtin.debug:
+        msg: "Website available at {{ website_url }}"
