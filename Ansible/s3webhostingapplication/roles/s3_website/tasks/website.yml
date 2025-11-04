@@ -1,0 +1,17 @@
+---
+# Tasks for S3 website configuration
+- name: Configure bucket for website hosting
+  community.aws.s3_website:
+    name: "{{ s3_website_bucket_name }}"
+    state: present
+    suffix: "{{ s3_website_index_document }}"
+    error_key: "{{ s3_website_error_document }}"
+
+- name: Set website endpoint URL fact
+  ansible.builtin.set_fact:
+    s3_website_url: "http://{{ s3_website_bucket_name }}.s3-website-{% if s3_website_region == 'us-east-1' %}us-east-1{% else %}{{ s3_website_region }}{% endif %}.amazonaws.com"
+
+- name: Print website URL
+  ansible.builtin.debug:
+    msg: "Website available at {{ s3_website_url }}"
+  when: s3_website_print_url | default(true)

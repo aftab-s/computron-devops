@@ -1,0 +1,16 @@
+---
+# Default variables for S3 website hosting role
+# These can be overridden in playbooks or via extra-vars
+
+# AWS Region for the S3 bucket
+s3_website_region: "us-east-1"
+
+# Index and error documents
+s3_website_index_document: "index.html"
+s3_website_error_document: "index.html"
+
+# Whether to ignore permission-related errors
+s3_website_ignore_permission_errors: true
+
+# Whether to print the website URL
+s3_website_print_url: true

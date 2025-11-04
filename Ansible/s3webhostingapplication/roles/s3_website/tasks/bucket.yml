@@ -1,0 +1,21 @@
+---
+# Tasks for S3 bucket creation and configuration
+- name: Create S3 bucket
+  amazon.aws.s3_bucket:
+    name: "{{ s3_website_bucket_name }}"
+    region: "{{ s3_website_region }}"
+    state: present
+  register: bucket_create
+
+- name: Disable S3 bucket public access block
+  ansible.builtin.command:
+    cmd: aws s3api put-public-access-block --bucket {{ s3_website_bucket_name }} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+  register: public_access_result
+  ignore_errors: "{{ s3_website_ignore_permission_errors | default(true) }}"
+
+- name: Set public read bucket policy
+  amazon.aws.s3_bucket:
+    name: "{{ s3_website_bucket_name }}"
+    policy: "{{ {'Version': '2012-10-17', 'Statement': [ {'Sid': 'PublicReadGetObject', 'Effect': 'Allow', 'Principal': '*', 'Action': ['s3:GetObject'], 'Resource': ['arn:aws:s3:::%s/*' % s3_website_bucket_name] } ] } | to_json }}"
+  register: policy_result
+  ignore_errors: "{{ s3_website_ignore_permission_errors | default(true) }}"

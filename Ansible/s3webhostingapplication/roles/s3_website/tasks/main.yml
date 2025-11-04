@@ -1,0 +1,10 @@
+---
+# Tasks for S3 static website hosting
+- name: Include bucket tasks
+  ansible.builtin.import_tasks: bucket.yml
+
+- name: Include website configuration tasks
+  ansible.builtin.import_tasks: website.yml
+
+- name: Include content upload tasks
+  ansible.builtin.import_tasks: content.yml

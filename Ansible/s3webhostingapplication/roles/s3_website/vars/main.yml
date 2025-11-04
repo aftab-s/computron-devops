@@ -1,0 +1,4 @@
+---
+# Required variables (must be provided when using the role)
+s3_website_bucket_name: "my-spa-test-bucket-901"  # Name of the S3 bucket to create
+s3_website_content_path: "" # Path to the directory containing website content

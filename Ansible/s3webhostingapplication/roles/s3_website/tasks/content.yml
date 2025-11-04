@@ -1,0 +1,8 @@
+---
+# Tasks for uploading website content
+- name: Upload index document
+  amazon.aws.s3_object:
+    bucket: "{{ s3_website_bucket_name }}"
+    object: "{{ s3_website_index_document }}"
+    src: "{{ s3_website_content_path }}/{{ s3_website_index_document }}"
+    mode: put
