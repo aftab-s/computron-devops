@@ -1,0 +1,12 @@
+---
+- name: Deploy static website to S3
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - role: s3_website
+      vars:
+        s3_website_bucket_name: "{{ bucket_name | default('test-bucket-for-ansible-spa-hosting-' + lookup('pipe', 'date +%Y%m%d-%H%M%S')) }}"
+        s3_website_content_path: "{{ playbook_dir }}/roles/s3_website/files"
+        s3_website_region: "us-east-1"
