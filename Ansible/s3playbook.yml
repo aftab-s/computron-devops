@@ -1,0 +1,40 @@
+---
+- name: Create S3 bucket and upload files
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    region: "ap-south-1"
+
+  tasks:
+    - name: Create a unique bucket name 
+      set_fact:
+        bucket_name: "lezinansiblebuccket}"
+
+    - name: Create S3 bucket
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        region: "{{ region }}"
+        state: present
+    
+    - name: Upload files to S3
+      amazon.aws.s3_object:
+        bucket: "{{ bucket_name }}"
+        object: "{{ item }}"
+        src: "files/{{ item }}"
+        mode: put
+        acl: public-read
+      loop:
+        - index.html
+        - data.txt
+
+    - name: Enable static website hosting
+      ansible.builtin.command: >
+        aws s3 website s3://{{ bucket_name }}/
+        --index-document index.html
+        --error-document index.html
+
+    - name: Show website URL
+      debug:
+        msg: "🌐 Website URL: http://{{ bucket_name }}.s3-website-{{ region }}.amazonaws.com"
