@@ -6,10 +6,11 @@ metadata:
 data:
   jenkins.yaml: |
     jenkins:
-      systemMessage: "Jenkins configured automatically using JCasC"
-      numExecutors: 2
+      systemMessage: "Jenkins configured using JCasC"
+      numExecutors: 5
       mode: NORMAL
-      scmCheckoutRetryCount: 2
+      scmCheckoutRetryCount: 3
+
       securityRealm:
         local:
           allowsSignup: false
@@ -19,52 +20,14 @@ data:
       authorizationStrategy:
         loggedInUsersCanDoAnything:
           allowAnonymousRead: false
-      remotingSecurity:
-        enabled: true
-    
-    security:
-      csrf:
-        defaultCrumbIssuer:
-          exclude:
-            clientIPFromCrumb: true
-        disableUserCreationBlocker: true
-      apiToken:
-        creationOfLegacyTokenEnabled: true
-        tokenGenerationOnCreationEnabled: true
-      globalJobDslSecurityConfiguration:
-        useScriptSecurity: false
-
-      clouds:
-        - kubernetes:
-            name: "kubernetes"
-            serverUrl: "https://kubernetes.default"
-            skipTlsVerify: true
-            namespace: "jenkins"
-            jenkinsUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080"
-            containerCapStr: "10"
-            connectTimeout: 0
-            readTimeout: 0
-            maxRequestsPerHostStr: 32
-            retentionTimeout: 5
-            templates:
-              - name: "jenkins-agent"
-                namespace: "jenkins"
-                label: "jenkins-agent"
-                nodeUsageMode: NORMAL
-                containers:
-                  - name: "jnlp"
-                    image: "jenkins/inbound-agent:latest"
-                    alwaysPullImage: false
-                    workingDir: "/home/jenkins/agent"
-                    ttyEnabled: true
-                    resourceRequestCpu: "500m"
-                    resourceRequestMemory: "512Mi"
-                    resourceLimitCpu: "1000m"
-                    resourceLimitMemory: "1Gi"
+      tools:
+        kubernetes:
+          installations:
+            - name: "kubectl"
+              home: "/usr/local/bin/kubectl"
+              version: "v1.21.0"
 
     unclassified:
       location:
         url: "http://localhost:8080/"
         adminAddress: "admin@localhost"
-    security:
-      crumbIssuer: "none"
