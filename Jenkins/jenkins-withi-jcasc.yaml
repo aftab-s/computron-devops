@@ -1,0 +1,22 @@
+
+jenkins:
+  install:
+    runSetupWizard: false
+
+    local:
+      allowsSignup: false
+      users:
+        - id: lezinhere
+          password: Lezinvm10!
+
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:admin"
+        - "Overall/Read:authenticated"
+
+  systemMessage: "Jenkins configured via Configuration as Code (JCasC) in Docker."
+
+unclassified:
+  location:
+    url: "http://localhost:8080/"
