@@ -1,0 +1,86 @@
+#SECRET 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nginx-secret
+type: Opaque
+stringData:
+  username: admin
+  password: password
+
+#SERVICE ACCOUNT 
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-sa
+---
+#ROLE
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: nginx-log-watcher
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "list", "watch"]
+
+#ROLEBINDING
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: nginx-log-watcher-binding
+subjects:
+  - kind: ServiceAccount
+    name: nginx-sa
+    namespace: default
+roleRef:
+  kind: Role
+  name: nginx-log-watcher
+  apiGroup: rbac.authorization.k8s.io
+
+#DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: nginx-sa
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: nginx-secret
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nginx-secret
+                  key: password
+
+#SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
