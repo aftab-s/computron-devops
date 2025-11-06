@@ -1,30 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"jenkins-pv-claim","namespace":"jenkins"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"10Gi"}},"storageClassName":"jenkins-local-storage"}}
-    pv.kubernetes.io/bind-completed: "yes"
-    pv.kubernetes.io/bound-by-controller: "yes"
-  creationTimestamp: "2025-10-30T12:40:39Z"
-  finalizers:
-  - kubernetes.io/pvc-protection
   name: jenkins-pv-claim
   namespace: jenkins
-  resourceVersion: "57253"
-  uid: 98ac9567-68d8-4c9d-aab3-71beefaeece2
 spec:
+  storageClassName: jenkins-local-storage
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
-  storageClassName: jenkins-local-storage
-  volumeMode: Filesystem
-  volumeName: jenkins-pv-volume
-status:
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 10Gi
-  phase: Bound

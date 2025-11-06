@@ -1,37 +1,24 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"labels":{"type":"local"},"name":"jenkins-pv-volume"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"10Gi"},"hostPath":{"path":"/run/desktop/mnt/host/c/jenkins-data","type":"DirectoryOrCreate"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"kubernetes.io/hostname","operator":"In","values":["docker-desktop"]}]}]}},"persistentVolumeReclaimPolicy":"Retain","storageClassName":"jenkins-local-storage"}}
-    pv.kubernetes.io/bound-by-controller: "yes"
-  creationTimestamp: "2025-10-30T12:40:39Z"
-  finalizers:
-  - kubernetes.io/pv-protection
+  name: jenkins-pv-volume
   labels:
     type: local
-  name: jenkins-pv-volume
-  resourceVersion: "57250"
-  uid: 3a3af0fa-5cae-4f62-a2a7-0a6a389a21b6
 spec:
-  accessModes:
-  - ReadWriteOnce
+  storageClassName: jenkins-local-storage
   capacity:
     storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: /run/desktop/mnt/host/c/jenkins-data
     type: DirectoryOrCreate
   nodeAffinity:
     required:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - docker-desktop
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: jenkins-local-storage
-  volumeMode: Filesystem
-status:
-  lastPhaseTransitionTime: "2025-10-30T12:42:00Z"
-  phase: Bound
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - docker-desktop

@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  creationTimestamp: "2025-11-04T09:43:40Z"
-  name: jenkins
-  namespace: jenkins
-  resourceVersion: "78042"
-  uid: 31bd8121-a85f-4eee-8210-65c37f67ce13

@@ -3,8 +3,6 @@ kind: Kustomization
 
 resources:
   - sa-jenkins.yaml
-  - role.yaml
-  - rolebinding.yaml
   - secret.yaml
   - configmap.yaml
   - pv.yaml
