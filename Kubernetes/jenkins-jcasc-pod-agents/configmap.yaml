@@ -20,12 +20,6 @@ data:
       authorizationStrategy:
         loggedInUsersCanDoAnything:
           allowAnonymousRead: false
-      tools:
-        kubernetes:
-          installations:
-            - name: "kubectl"
-              home: "/usr/local/bin/kubectl"
-              version: "v1.21.0"
 
     unclassified:
       location:
