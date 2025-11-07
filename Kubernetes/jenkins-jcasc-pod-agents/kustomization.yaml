@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - sa-jenkins.yaml
   - secret.yaml
   - configmap.yaml
   - serviceaccount-crb.yaml
