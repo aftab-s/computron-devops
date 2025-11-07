@@ -4,3 +4,6 @@ Beyond these files, a secret also needs to be created:
 For accessing service by url: '''http://service-name.namespace.svc.cluster.local:8080'''
 
 For forwarding port: ''kubectl port-forward -n jenkins pod/jenkins-pod-name 8080:8080''
+
+
+##To get started run "kubectl apply -k ."
